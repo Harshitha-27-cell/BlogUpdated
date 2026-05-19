@@ -13,8 +13,6 @@ function AuthorProfile() {
   return (
     <div className={pageWrapper}>
 
-      {/* Search Bar */}
-      <SearchArticles />
 
       {/* Author Navigation */}
       <div className="flex gap-6 mb-6">
