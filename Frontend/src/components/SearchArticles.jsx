@@ -23,6 +23,7 @@ function SearchArticles() {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const { currentUser, checkAuth } = useAuth((state) => ({ currentUser: state.currentUser, checkAuth: state.checkAuth }));
 
   useEffect(() => {
     if (!query) {
@@ -46,8 +47,13 @@ function SearchArticles() {
       }
     };
 
+    checkAuth(true); // Refresh the user's savedArticles state silently
     fetchResults();
   }, [query]);
+
+  const isSaved = (articleId) => {
+    return currentUser?.savedArticles?.includes(articleId);
+  };
 
   const openArticle = (article) => {
     navigate(`/article/${article._id}`, {
@@ -75,7 +81,10 @@ function SearchArticles() {
           {articles.map((article) => (
             <div key={article._id} className={articleCardClass}>
               <div className="flex flex-col h-full gap-3">
-                <p className={articleTitle}>{article.title}</p>
+                <div className="flex items-start justify-between gap-2">
+                  <p className={articleTitle}>{article.title}</p>
+                  {isSaved(article._id) && <span title="Saved Article" className="text-[#FFD700] text-2xl drop-shadow-sm leading-none">★</span>}
+                </div>
                 <p className={`${articleExcerpt} break-words line-clamp-3 overflow-hidden`}>
                   {article.content.slice(0, 120)}...
                 </p>

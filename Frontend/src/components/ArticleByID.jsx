@@ -156,8 +156,9 @@ function ArticleByID() {
       <div className={articleHeader}>
         <span className={articleCategory}>{article.category}</span>
 
-        <h1 className={`${articleMainTitle} uppercase`}>
+        <h1 className={`${articleMainTitle} uppercase flex items-center gap-3`}>
           {article.title}
+          {isSaved && <span title="Saved Article" className="text-[#FFD700] text-3xl drop-shadow-md pb-1">★</span>}
         </h1>
 
         <div className={articleAuthorRow}>

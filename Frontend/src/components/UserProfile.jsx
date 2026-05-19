@@ -17,6 +17,7 @@ import {
 function UserProfile() {
   const logout = useAuth((state) => state.logout);
   const currentUser = useAuth((state) => state.currentUser);
+  const checkAuth = useAuth((state) => state.checkAuth);
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);
@@ -38,6 +39,7 @@ function UserProfile() {
         setLoading(false);
       }
     };
+    checkAuth(true); // Refresh the user's savedArticles state silently
     getArticles();
   }, []);
 
@@ -62,6 +64,10 @@ function UserProfile() {
     });
   };
 
+  const isSaved = (articleId) => {
+    return currentUser?.savedArticles?.includes(articleId);
+  };
+
   if (loading) {
     return <p className={loadingClass}>Loading articles...</p>;
   }
@@ -84,7 +90,10 @@ function UserProfile() {
               <div className="flex flex-col h-full">
                 {/* Top Content */}
                 <div>
-                  <p className={articleTitle}>{articleObj.title}</p>
+                  <div className="flex items-start justify-between gap-2 mb-2">
+                    <p className={articleTitle}>{articleObj.title}</p>
+                    {isSaved(articleObj._id) && <span title="Saved Article" className="text-[#FFD700] text-2xl drop-shadow-sm leading-none">★</span>}
+                  </div>
                   <p>{articleObj.content.slice(0, 20)}...</p>
                   <p className={timestampClass}>
                     {formatDateIST(articleObj.createdAt)}

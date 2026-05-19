@@ -69,40 +69,40 @@ export const useAuth = create((set) => ({
   },
 
   // restore login
-  checkAuth: async () => {
+  checkAuth: async (silent = false) => {
     try {
-      set({ loading: true });
+      if (!silent) set({ loading: true });
 
       const res = await axios.get(
         `${import.meta.env.VITE_API_URL}/common-api/check-auth`,
         { withCredentials: true }
       );
 
-      set({
+      set((state) => ({
         currentUser: res.data.payload,
         isAuthenticated: true,
-        loading: false,
-      });
+        loading: silent ? state.loading : false,
+      }));
 
     } catch (err) {
       // If user is not logged in
       if (err.response?.status === 401) {
-        set({
+        set((state) => ({
           currentUser: null,
           isAuthenticated: false,
-          loading: false,
-        });
+          loading: silent ? state.loading : false,
+        }));
         return;
       }
 
       // other errors
       console.error("Auth check failed:", err);
 
-      set({
-        loading: false,
+      set((state) => ({
+        loading: silent ? state.loading : false,
         currentUser: null,
         isAuthenticated: false,
-      });
+      }));
     }
   },
 }));
