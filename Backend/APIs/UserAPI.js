@@ -5,6 +5,7 @@ import { verifyToken } from "../middlewares/verifyToken.js";
 import { upload } from "../config/multer.js";
 import cloudinary from "../config/cloudinary.js";
 import { uploadToCloudinary } from "../config/cloudinaryUpload.js";
+import { UserTypeModel } from "../models/UserModel.js";
 
 export const userRoute = exp.Router();
 
@@ -78,21 +79,37 @@ userRoute.post("/article/:id/comment", verifyToken("USER"), async (req, res) => 
   }
 });
 
-// search articles
-userRoute.get("/articles/search/:keyword", async (req, res) => {
+// save/unsave article
+userRoute.post("/article/:id/save", verifyToken("USER", "AUTHOR"), async (req, res) => {
   try {
-    const keyword = req.params.keyword;
+    const articleId = req.params.id;
+    const userId = req.user.userId;
 
-    const articles = await ArticleModel.find({
-      isArticleActive: true,
-      $or: [
-        { title: { $regex: keyword, $options: "i" } },
-        { content: { $regex: keyword, $options: "i" } },
-      ],
+    const user = await UserTypeModel.findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    const isSaved = user.savedArticles.some((id) => id.toString() === articleId);
+
+    if (isSaved) {
+      // Unsave
+      user.savedArticles = user.savedArticles.filter(
+        (id) => id.toString() !== articleId
+      );
+    } else {
+      // Save
+      user.savedArticles.push(articleId);
+    }
+
+    await user.save();
+
+    res.status(200).json({
+      message: isSaved ? "Article unsaved" : "Article saved",
+      isSaved: !isSaved,
     });
-
-    res.status(200).json({ message: "articles found", payload: articles });
   } catch (err) {
-    res.status(500).json({ message: "search failed" });
+    console.error(err);
+    res.status(500).json({ message: "Failed to toggle save article" });
   }
 });

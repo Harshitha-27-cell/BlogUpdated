@@ -3,6 +3,7 @@ import { authenticate } from "../services/authService.js";
 import { UserTypeModel } from "../models/UserModel.js";
 import bcrypt from "bcryptjs";
 import { verifyToken } from "../middlewares/verifyToken.js";
+import { ArticleModel } from "../models/ArticleModel.js";
 
 export const commonRouter = exp.Router();
 
@@ -127,5 +128,30 @@ commonRouter.get(
       message: "authenticated",
       payload: req.user,
     });
+  }
+);
+
+// search articles
+commonRouter.get(
+  "/articles/search/:keyword",
+  verifyToken("USER", "AUTHOR", "ADMIN"),
+  async (req, res) => {
+    try {
+      const keyword = req.params.keyword;
+      console.log(`[Search API] Request received for keyword: "${keyword}" from user role: ${req.user?.role}`);
+
+      const articles = await ArticleModel.find({
+        isArticleActive: true,
+        $or: [
+          { title: { $regex: keyword, $options: "i" } },
+          { content: { $regex: keyword, $options: "i" } },
+        ],
+      }).populate("author", "firstName email");
+
+      console.log(`[Search API] Found ${articles.length} articles`);
+      res.status(200).json({ message: "articles found", payload: articles });
+    } catch (err) {
+      res.status(500).json({ message: "search failed" });
+    }
   }
 );

@@ -57,14 +57,17 @@ authorRoute.post("/articles", verifyToken("AUTHOR"), async (req, res) => {
 });
 
 //Read artiles of author(protected route)
-authorRoute.get("/articles/:authorId", verifyToken("AUTHOR"), async (req, res) => {
-  //get author id
-  let aid = req.params.authorId;
+authorRoute.get("/articles", verifyToken("AUTHOR"), async (req, res) => {
+  try {
+    const aid = req.user.userId;
 
-  //read atricles by this author which are acticve
-  let articles = await ArticleModel.find({ author: aid }).populate("author", "firstName email");
-  //send res
-  res.status(200).json({ message: "articles", payload: articles });
+    //read atricles by this author which are acticve
+    const articles = await ArticleModel.find({ author: aid }).populate("author", "firstName email");
+    
+    res.status(200).json({ message: "articles", payload: articles });
+  } catch (err) {
+    res.status(500).json({ message: "Failed to fetch articles" });
+  }
 });
 
 //edit article(protected route)

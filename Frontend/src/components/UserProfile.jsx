@@ -70,22 +70,11 @@ function UserProfile() {
     <div>
       {error && <p className={errorClass}>{error}</p>}
 
-      <div className="text-end">
-        <p className="text-2xl">Welcome, {currentUser?.firstName}</p>
-        <img
-          src={currentUser?.profileImageUrl}
-          className="w-14 mr-2 rounded-full block ms-auto"
-          alt="Profile"
-        />
-      </div>
-
-      <div className="flex justify-end mb-6 mt-3">
-        <button
-          className="bg-blue-500 text-white px-4 py-2 rounded"
-          onClick={onLogout}
-        >
-          Logout
-        </button>
+      <div className="text-center mb-12 mt-8">
+        <h1 className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#ff0a54] to-[#ff477e] tracking-tight">
+          Welcome, {currentUser?.firstName}!
+        </h1>
+        <p className="text-[#b07d92] mt-3 text-lg font-medium">Explore the latest articles below.</p>
       </div>
 
       {articles.length > 0 && (

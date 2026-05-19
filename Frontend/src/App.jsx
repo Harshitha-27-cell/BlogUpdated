@@ -13,6 +13,7 @@ import EditArticle from "./components/EditArticleForm";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Unauthorized from "./components/Unauthorized";
 import ErrorBoundary from "./components/ErrorBoundary";
+import SearchArticles from "./components/SearchArticles";
 
 function App() {
   const routerObj = createBrowserRouter([
@@ -62,6 +63,13 @@ function App() {
               element: <WriteArticle />,
             },
           ],
+        },
+        {
+          path: "search",
+          element: 
+          <ProtectedRoute allowedRoles={["USER", "AUTHOR", "ADMIN"]}>
+            <SearchArticles />
+          </ProtectedRoute>,
         },
         {
           path: "article/:id",

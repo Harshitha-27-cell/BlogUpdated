@@ -30,6 +30,12 @@ const userSchema = new Schema(
       type: Boolean,
       default: true,
     },
+    savedArticles: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "article",
+      },
+    ],
   },
   {
     timestamps: true,

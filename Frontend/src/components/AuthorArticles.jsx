@@ -33,7 +33,7 @@ function AuthorArticles() {
       setLoading(true);
 
       try {
-        const res = await axios.get(`${import.meta.env.VITE_API_URL}/author-api/articles/${user._id}`, { withCredentials: true });
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/author-api/articles`, { withCredentials: true });
 
         setArticles(res.data.payload);
       } catch (err) {
