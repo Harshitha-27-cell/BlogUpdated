@@ -13,7 +13,7 @@ import {
   loadingClass,
 } from "../styles/common";
 
-import { NavLink, useNavigate } from "react-router";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 

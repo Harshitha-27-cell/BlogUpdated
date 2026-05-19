@@ -251,7 +251,10 @@ function ArticleByID() {
             {article.comments.map((comment, index) => (
               <div key={index} className="bg-white p-5 rounded-2xl shadow-sm border border-[#ffe5ec] flex flex-col gap-2">
                 <div className="flex items-center justify-between">
-                  <p className="font-bold text-[#ff0a54]">{comment.user?.firstName || comment.user?.email}</p>
+                  <p className="font-bold text-[#ff0a54]">
+                    {comment.user?.firstName || comment.user?.email || "Unknown User"}
+                    {user?.role === "AUTHOR" && comment.user?.email && <span className="text-sm font-normal text-[#6e3b52] ml-2">({comment.user.email})</span>}
+                  </p>
                   <p className="text-xs font-medium text-[#b07d92]">{comment.createdAt ? formatDate(comment.createdAt) : "Just now"}</p>
                 </div>
                 <p className="text-[#4a0e28] text-[0.95rem] leading-relaxed">{comment.comment}</p>
