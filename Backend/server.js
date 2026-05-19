@@ -8,8 +8,11 @@ import { authorRoute } from "./APIs/AuthorAPI.js";
 import { commonRouter } from "./APIs/CommonAPI.js";
 import cors from "cors";
 
+
 config();
 
+console.log("DB_URL =", process.env.DB_URL);
+console.log("JWT =", process.env.JWT_SECRET);
 const app = exp();
 app.set("trust proxy", 1);
 // CORS
