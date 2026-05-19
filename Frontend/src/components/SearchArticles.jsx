@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSearchParams, useNavigate } from "react-router"; // Use "react-router-dom" if "react-router" gives issues, but project seems to use "react-router"
 import axios from "axios";
+import { useAuth } from "../store/authStore";
 import {
   articleGrid,
   articleCardClass,

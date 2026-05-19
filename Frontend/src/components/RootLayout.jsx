@@ -18,11 +18,11 @@ function RootLayout() {
   }
 
   return (
-    <div>
+    <div className="flex flex-col min-h-screen bg-[#fff5f8]">
       <Header />
-      <div className="min-h-screen mx-4 sm:mx-36">
+      <main className="flex-grow flex flex-col w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <Outlet />
-      </div>
+      </main>
       <Footer />
     </div>
   );

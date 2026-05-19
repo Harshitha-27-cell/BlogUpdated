@@ -2,8 +2,8 @@
 // Theme: Creative Amazing Pink & White — #ffffff background, #ff0a54 accent, sleek gradients and shadows
 
 // ─── Layout ───────────────────────────────────────────
-export const pageBackground = "bg-[#fff5f8] min-h-screen text-[#4a0e28] font-sans selection:bg-[#ff0a54] selection:text-white";
-export const pageWrapper = "max-w-5xl mx-auto px-6 py-16";
+export const pageBackground = "w-full flex-grow flex flex-col text-[#4a0e28] font-sans selection:bg-[#ff0a54] selection:text-white";
+export const pageWrapper = "max-w-5xl mx-auto px-6 py-16 w-full";
 export const section = "mb-14";
 
 // ─── Cards ────────────────────────────────────────────
