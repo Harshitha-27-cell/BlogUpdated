@@ -12,8 +12,7 @@ function Footer() {
         
         <div className="flex items-center gap-6">
           <NavLink to="/" className="text-sm font-bold text-[#6e3b52] hover:text-[#ff0a54] transition-colors">Home</NavLink>
-          <a href="#" className="text-sm font-bold text-[#6e3b52] hover:text-[#ff0a54] transition-colors">About Us</a>
-          <a href="#" className="text-sm font-bold text-[#6e3b52] hover:text-[#ff0a54] transition-colors">Privacy Policy</a>
+
         </div>
       </div>
     </footer>

@@ -39,7 +39,7 @@ export const submitBtn =
 export const navbarClass =
   "bg-white/70 backdrop-blur-2xl border-b border-[#ffe5ec] h-[72px] flex items-center sticky top-0 z-50 shadow-sm";
 export const navContainerClass = "max-w-6xl mx-auto w-full px-6 flex items-center justify-between";
-export const navBrandClass = "text-2xl font-black bg-gradient-to-r from-[#ff0a54] to-[#ff8fab] bg-clip-text text-transparent tracking-tighter";
+export const navBrandClass = "text-2xl font-black text-[#ff0a54] tracking-tighter hover:scale-105 transition-transform";
 export const navLinksClass = "flex items-center gap-8";
 export const navLinkClass = "text-[0.95rem] font-medium text-[#6e3b52] hover:text-[#ff0a54] transition-colors relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-[#ff0a54] hover:after:w-full after:transition-all after:duration-300";
 export const navLinkActiveClass = "text-[0.95rem] font-bold text-[#ff0a54] relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-[#ff0a54]";
