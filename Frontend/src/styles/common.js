@@ -54,19 +54,31 @@ export const articleMeta = "text-xs font-bold text-[#ff8fab] uppercase tracking-
 export const articleBody = "text-[#4a0e28] leading-[1.85] text-[1.05rem] max-w-3xl";
 export const timestampClass = "text-xs font-medium text-[#b07d92] flex items-center gap-1.5 mt-2";
 export const tagClass = "text-[0.7rem] font-bold bg-[#fff0f3] text-[#ff0a54] px-3 py-1 rounded-full uppercase tracking-widest w-fit";
-
 // ─── Article Page ─────────────────────────────────────
-export const articlePageWrapper = "max-w-4xl mx-auto px-6 py-16 bg-white shadow-2xl shadow-[#ff0a54]/5 rounded-[3rem] mt-10 mb-20 border border-[#ffe5ec]";
-export const articleHeader = "mb-12 flex flex-col gap-5";
-export const articleCategory = "text-[0.8rem] font-black uppercase tracking-[0.2em] text-[#ff0a54] bg-[#fff0f3] px-4 py-1.5 rounded-full w-fit";
-export const articleMainTitle = "text-5xl font-extrabold text-[#2d0a16] leading-tight tracking-tight";
-export const articleAuthorRow =
-  "flex items-center justify-between border-y-2 border-[#fff0f3] py-5 text-sm text-[#6e3b52] font-medium";
-export const authorInfo = "flex items-center gap-3 font-bold text-[#2d0a16] text-base";
-export const articleContent = "text-[#4a0e28] leading-[2] text-[1.1rem] whitespace-pre-line mt-10 selection:bg-[#ff0a54] selection:text-white";
-export const articleFooter = "border-t-2 border-[#fff0f3] mt-16 pt-8 flex items-center justify-between";
+export const articlePageWrapper =
+  "max-w-4xl mx-auto px-6 py-16 bg-white shadow-2xl shadow-[#ff0a54]/5 rounded-[3rem] mt-10 mb-20 border border-[#ffe5ec] overflow-hidden";
 
-// ─── Article Actions ─────────────────────────────
+export const articleHeader =
+  "mb-12 flex flex-col gap-5 min-w-0";
+
+export const articleCategory =
+  "text-[0.8rem] font-black uppercase tracking-[0.2em] text-[#ff0a54] bg-[#fff0f3] px-4 py-1.5 rounded-full w-fit";
+
+export const articleMainTitle =
+  "text-5xl font-extrabold text-[#2d0a16] leading-tight tracking-tight break-words w-full min-w-0";
+
+export const articleAuthorRow =
+  "flex items-center justify-between border-y-2 border-[#fff0f3] py-5 text-sm text-[#6e3b52] font-medium flex-wrap gap-4";
+
+export const authorInfo =
+  "flex items-center gap-3 font-bold text-[#2d0a16] text-base";
+
+export const articleContent =
+  "text-[#4a0e28] leading-[2] text-[1.1rem] whitespace-pre-wrap break-words overflow-hidden w-full mt-10 selection:bg-[#ff0a54] selection:text-white";
+
+export const articleFooter =
+  "border-t-2 border-[#fff0f3] mt-16 pt-8 flex items-center justify-between flex-wrap gap-4";
+  // ─── Article Actions ─────────────────────────────
 export const articleActions = "flex gap-4 mt-8";
 export const editBtn = "bg-[#ff8fab] text-white font-bold px-6 py-2.5 rounded-full hover:bg-[#ff477e] hover:shadow-lg hover:-translate-y-0.5 transition-all";
 export const deleteBtn = "bg-[#fff0f3] text-[#ff0a54] font-bold px-6 py-2.5 rounded-full border border-[#ffe5ec] hover:bg-[#ff0a54] hover:text-white hover:shadow-lg hover:-translate-y-0.5 transition-all";
